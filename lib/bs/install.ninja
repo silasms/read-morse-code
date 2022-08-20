@@ -1,0 +1,22 @@
+rescript = 1
+rule cp
+  command = cp $i $out
+rule touch
+ command = touch $out
+o App.cmi : cp ../bs/src/App.cmi
+o App.cmj : cp ../bs/src/App.cmj
+o App.cmt : cp ../bs/src/App.cmt
+o App.res : cp ../../src/App.res
+o Main.cmi : cp ../bs/src/Main.cmi
+o Main.cmj : cp ../bs/src/Main.cmj
+o Main.cmt : cp ../bs/src/Main.cmt
+o Main.res : cp ../../src/Main.res
+o Styles.cmi : cp ../bs/src/Styles.cmi
+o Styles.cmj : cp ../bs/src/Styles.cmj
+o Styles.cmt : cp ../bs/src/Styles.cmt
+o Styles.res : cp ../../src/Styles.res
+o Emotion.cmi : cp ../bs/src/Emotion.cmi
+o Emotion.cmj : cp ../bs/src/Emotion.cmj
+o Emotion.cmt : cp ../bs/src/Emotion.cmt
+o Emotion.res : cp ../../src/Emotion.res
+build install.stamp : touch App.cmi App.cmj Main.cmi Main.cmj Styles.cmi Styles.cmj Emotion.cmi Emotion.cmj 

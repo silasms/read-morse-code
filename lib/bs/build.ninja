@@ -1,0 +1,23 @@
+rescript = 1
+g_finger := /home/silas/ecma2077/read-morse-code/node_modules/@rescript/react/lib/ocaml/install.stamp
+rule astj
+  command = /home/silas/ecma2077/read-morse-code/node_modules/rescript/linux/bsc.exe  -bs-v 9.1.4 -bs-jsx 3  -absname -bs-ast -o $out $i
+o src/App.ast : astj ../../src/App.res
+rule deps
+  command = /home/silas/ecma2077/read-morse-code/node_modules/rescript/linux/bsb_helper.exe -hash c4d53bafbc275d0b754c4ecb4d53fc32 $in
+  restat = 1
+o src/App.d : deps src/App.ast
+rule mij
+  command = /home/silas/ecma2077/read-morse-code/node_modules/rescript/linux/bsc.exe -I src -I /home/silas/ecma2077/read-morse-code/node_modules/@rescript/react/lib/ocaml   -bs-package-name read-morse-code -bs-package-output es6:$in_d:.bs.js -bs-v $g_finger $i
+  dyndep = 1
+  restat = 1
+o src/App.cmj src/App.cmi ../../src/App.bs.js : mij src/App.ast
+o src/Main.ast : astj ../../src/Main.res
+o src/Main.d : deps src/Main.ast
+o src/Main.cmj src/Main.cmi ../../src/Main.bs.js : mij src/Main.ast
+o src/Styles.ast : astj ../../src/Styles.res
+o src/Styles.d : deps src/Styles.ast
+o src/Styles.cmj src/Styles.cmi ../../src/Styles.bs.js : mij src/Styles.ast
+o src/Emotion.ast : astj ../../src/Emotion.res
+o src/Emotion.d : deps src/Emotion.ast
+o src/Emotion.cmj src/Emotion.cmi ../../src/Emotion.bs.js : mij src/Emotion.ast
